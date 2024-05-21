@@ -9,6 +9,6 @@ class adminController extends Controller
 {
 
     public function index(){
-        dd('index admin');
+        return view('admin.home');
     }
 }
