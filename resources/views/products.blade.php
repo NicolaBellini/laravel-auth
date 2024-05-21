@@ -2,8 +2,10 @@
 
 @section('content')
 
+@foreach ($data as $item)
 
-<h1>guest home page</h1>
+<li>{{$item->name}}</li>
 
+@endforeach
 
 @endsection

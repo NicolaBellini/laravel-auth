@@ -44,8 +44,6 @@ class ProjectsSeeder extends Seeder
             $project->difficulty= $item['difficulty'];
             $project->slug= Helper::generateSlug($project->name, new Project());
             $project->save();
-
-
         }
     }
 }

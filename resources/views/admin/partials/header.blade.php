@@ -23,6 +23,9 @@
                 <button type="submit" class="btn btn-warning ">esci</button>
             </form>
         </li>
+        <li>
+            <a href="{{route('products')}}">prodotti</a>
+        </li>
       </ul>
     </div>
   </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\guest\pageController;
 use App\Http\Controllers\admin\adminController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,10 @@ Route::get('/',[pageController::class, 'index'])->name('home');
 Route::middleware(['auth', 'verified'])
     ->prefix('admin')->name('admin.')->group(function(){
     Route::get('/', [adminController::class, 'index'])->name('home');
+});
+
+Route::middleware(['auth','verified'])->group(function(){
+    Route::get('/home',[ProjectController::class, 'index'])->name('products');
 });
 
 Route::middleware('auth')->group(function () {
