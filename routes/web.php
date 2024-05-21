@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\guest\pageController;
+use App\Http\Controllers\admin\adminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[pageController::class, 'index'])->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// auth va minuscolo
+Route::middleware(['auth', 'verified'])
+    ->prefix('admin')->name('admin.')->group(function(){
+    Route::get('/', [adminController::class, 'index'])->name('home');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
