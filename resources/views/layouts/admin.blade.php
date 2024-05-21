@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    @include('guest.partials.header')
+    @include('admin.partials.header')
     @yield('content')
 
 
