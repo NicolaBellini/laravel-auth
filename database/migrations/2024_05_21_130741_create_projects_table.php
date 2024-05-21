@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name',100);
             $table->string('topic',200);
             $table->tinyInteger('difficulty');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
