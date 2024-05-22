@@ -10,7 +10,18 @@
 <body>
 
     @include('admin.partials.header')
-    @yield('content')
+
+    <main class="d-flex">
+
+        <div class="aside">
+            <h1>aside</h1>
+        </div>
+
+
+        <div>
+            @yield('content')
+        </div>
+    </main>
 
 
 </body>

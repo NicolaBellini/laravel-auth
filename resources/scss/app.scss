@@ -1,1 +1,11 @@
-@import '~bootstrap/scss/bootstrap'
+@import "~bootstrap/scss/bootstrap";
+
+@import "./partials/aside-admin";
+
+header {
+    height: 70px;
+}
+
+main {
+    height: calc(100vh - 70px);
+}
