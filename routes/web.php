@@ -4,7 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\guest\pageController;
 use App\Http\Controllers\admin\adminController;
-use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\admin\projectController;
+use Database\Seeders\ProjectsSeeder;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +24,16 @@ Route::get('/',[pageController::class, 'index'])->name('home');
 Route::middleware(['auth', 'verified'])
     ->prefix('admin')->name('admin.')->group(function(){
     Route::get('/', [adminController::class, 'index'])->name('home');
+    Route::resource('projects', projectController::class);
 });
 
-Route::middleware(['auth','verified'])->group(function(){
-    Route::get('/home',[ProjectController::class, 'index'])->name('projects');
-});
+
+
+// Route::middleware(['auth','verified'])->group(function(){
+//     Route::get('/home',[ProjectController::class, 'index'])->name('projects');
+// });
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

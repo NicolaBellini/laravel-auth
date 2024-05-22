@@ -24,7 +24,7 @@
             </form>
         </li>
         <li>
-            <a href="{{route('projects')}}">Progetti</a>
+            <a href="{{route('admin.projects.index')}}">Progetti</a>
         </li>
       </ul>
     </div>
