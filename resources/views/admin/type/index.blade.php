@@ -53,7 +53,7 @@
         </tr>
     </thead>
     <tbody>
-    @foreach ($technoList as $techno)
+    @foreach ($typeList as $techno)
         <tr>
             <form action="{{route('admin.technology.update', $techno)}}" id="form-edit-{{$techno->id}}" method="post">
                 @csrf

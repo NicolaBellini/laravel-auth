@@ -4,6 +4,10 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Type;
+use App\functions\Helper;
+
+use function PHPSTORM_META\type;
 
 class typeController extends Controller
 {
@@ -12,7 +16,8 @@ class typeController extends Controller
      */
     public function index()
     {
-        //
+         $typeList= Type::all();
+        return view('admin.type.index', compact('typeList'));
     }
 
     /**
@@ -28,7 +33,19 @@ class typeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exist= Type::where('name', $request->name)->first();
+        if($exist){
+            return redirect()->route('')->with('error','esiste gia una tecnologia con lo stesso nome');
+        }else{
+            $formData = $request->all();
+            $newTechno= new Technology();
+            $newTechno->name = $formData['name'];
+            $newTechno->slug = Helper::generateSlug($newTechno->name, Technology::class);
+            // dd($newProject);
+            $newTechno->save();
+
+            return redirect()->route('admin.technology.index')->with('success','Tecnologia aggiunta con successo');
+        }
     }
 
     /**

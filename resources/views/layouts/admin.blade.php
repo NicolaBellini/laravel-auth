@@ -21,6 +21,8 @@
 
             <li><a href="{{route('admin.technology.index')}}">modifica tipi e tecnologie</a></li>
 
+             <li><a href="{{route('admin.type.index')}}">modifica tipi e tecnologie</a></li>
+
            </ul>
         </div>
 

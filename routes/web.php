@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\adminController;
 use App\Http\Controllers\admin\projectController;
 use App\Http\Controllers\admin\technologyController;
 use Database\Seeders\ProjectsSeeder;
+use App\Http\Controllers\admin\typeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,9 @@ Route::middleware(['auth', 'verified'])
         'create','show','edit'
     ]);
     Route::resource('technology', technologyController::class)->except([
+        'create','show','edit'
+    ]);
+     Route::resource('type', typeController::class)->except([
         'create','show','edit'
     ]);
 });
