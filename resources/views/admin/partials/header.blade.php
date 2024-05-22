@@ -24,7 +24,7 @@
             </form>
         </li>
         <li>
-            <a href="{{route('products')}}">prodotti</a>
+            <a href="{{route('projects')}}">Progetti</a>
         </li>
       </ul>
     </div>

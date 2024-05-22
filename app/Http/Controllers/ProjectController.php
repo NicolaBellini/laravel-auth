@@ -10,6 +10,6 @@ class ProjectController extends Controller
 {
     public function index(){
         $data= Project::all();
-        return view('products', compact('data'));
+        return view('projects', compact('data'));
     }
 }

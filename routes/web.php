@@ -26,7 +26,7 @@ Route::middleware(['auth', 'verified'])
 });
 
 Route::middleware(['auth','verified'])->group(function(){
-    Route::get('/home',[ProjectController::class, 'index'])->name('products');
+    Route::get('/home',[ProjectController::class, 'index'])->name('projects');
 });
 
 Route::middleware('auth')->group(function () {
