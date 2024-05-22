@@ -35,9 +35,9 @@
 @endif
 
 <div class="container-fluid d-flex ">
-<form action="{{route('admin.technology.store')}}" method="post">
+<form action="{{route('admin.type.store')}}" method="post">
     @csrf
-    <label for="Name">Nome Tecnologia</label>
+    <label for="Name">Nome tipo</label>
     <input type="text" id="name" name="name" class="me-3">
 
     <button class="btn btn-succes" type="submit">crea</button>
@@ -53,26 +53,26 @@
         </tr>
     </thead>
     <tbody>
-    @foreach ($typeList as $techno)
+    @foreach ($typeList as $type)
         <tr>
-            <form action="{{route('admin.technology.update', $techno)}}" id="form-edit-{{$techno->id}}" method="post">
+            <form action="{{route('admin.type.update', $type)}}" id="form-edit-{{$type->id}}" method="post">
                 @csrf
                 @method('PUT')
 
                 <td class="w-25">
-                    <input type="text" value="{{$techno->name}}" name="name">
+                    <input type="text" value="{{$type->name}}" name="name">
                 </td>
 
             </form>
 
 
             <td class="d-flex">
-            <button onclick="submitForm({{$techno->id}})">modifica</button>
+            <button onclick="submitForm({{$type->id}})">modifica</button>
 
-            <form action="{{route('admin.technology.destroy', $techno)}}" method="post" id="form-edit-{{$techno->id}}">
+            <form action="{{route('admin.type.destroy', $type)}}" method="post" id="form-edit-{{$type->id}}">
                 @csrf
                 @method('DELETE')
-                <button onclick="submitForm({{$techno->id}})" class="btn btn-danger">Elimina</button>
+                <button onclick="submitForm({{$type->id}})" class="btn btn-danger">Elimina</button>
             </form>
 
             </td>

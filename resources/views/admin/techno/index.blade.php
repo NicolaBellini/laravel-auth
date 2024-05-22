@@ -69,11 +69,12 @@
             <td class="d-flex">
             <button onclick="submitForm({{$techno->id}})">modifica</button>
 
-            <form action="{{route('admin.technology.destroy', $techno)}}" method="post" id="form-edit-{{$techno->id}}">
+             <form action="{{route('admin.technology.destroy', $techno)}}" method="post" id="form-edit-{{$techno->id}}">
                 @csrf
                 @method('DELETE')
                 <button onclick="submitForm({{$techno->id}})" class="btn btn-danger">Elimina</button>
             </form>
+
 
             </td>
 

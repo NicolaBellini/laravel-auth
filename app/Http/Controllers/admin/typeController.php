@@ -38,13 +38,13 @@ class typeController extends Controller
             return redirect()->route('')->with('error','esiste gia una tecnologia con lo stesso nome');
         }else{
             $formData = $request->all();
-            $newTechno= new Technology();
-            $newTechno->name = $formData['name'];
-            $newTechno->slug = Helper::generateSlug($newTechno->name, Technology::class);
+            $newType= new type();
+            $newType->name = $formData['name'];
+            $newType->slug = Helper::generateSlug($newType->name, type::class);
             // dd($newProject);
-            $newTechno->save();
+            $newType->save();
 
-            return redirect()->route('admin.technology.index')->with('success','Tecnologia aggiunta con successo');
+            return redirect()->route('admin.type.index')->with('success','Tecnologia aggiunta con successo');
         }
     }
 
@@ -67,16 +67,35 @@ class typeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Type $type)
     {
-        //
+             $validData = $request->validate([
+        'name' => 'required|min:2|max:30',
+        ], [
+            'name.required' => 'Il nome deve essere inserito',
+            'name.min' => 'Il nome deve avere almeno :min caratteri',
+            'name.max' => 'Il nome deve avere massimo :max caratteri',
+        ]);
+
+
+        $exist = Type::where('name', $request->name)->first();
+        if ($exist) {
+            return redirect()->route('admin.type.index')->with('error', 'Esiste già una tecnologia con questo nome');
+        }
+
+        $type->name= $validData['name'];
+        $type->slug = Helper::generateSlug($validData['name'], type::class);
+        $type->save();
+
+        return redirect()->route('admin.type.index')->with('success', 'La tecnologia è stata aggiornata con successo');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return redirect()->route('admin.type.index')->with('deleted',"la tecnologia $type->name è stata eliminata con successo");
     }
 }
