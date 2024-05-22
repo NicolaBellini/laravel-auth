@@ -25,6 +25,12 @@
  <div class="alert alert-success" role="alert">
     {{session('success')}}
 </div>
+@endif
+
+@if(session('deleted'))
+ <div class="alert alert-success" role="alert">
+    {{session('deleted')}}
+</div>
 
 @endif
 
@@ -74,10 +80,10 @@
             </form>
             <td class="d-flex">
                 <button onclick="submitForm({{$project->id}})">modifica</button>
-                <form action="{{route('admin.projects.destroy', $project)}}" method="post">
+                <form action="{{route('admin.projects.destroy', $project)}}" method="post" id="form-edit-{{$project->id}}">
                     @csrf
                     @method('DELETE')
-                    <button onclick="submitForm({{$project->id}})">elimina</button>
+                    <button href="{{route('admin.projects.destroy', $project)}}" class="btn btn-danger" onclick="submitForm({{$project->id}})" type="submit">elimina</button>
                 </form>
 
             </td>
@@ -88,6 +94,8 @@
   </tbody>
 </table>
 
+
+{{-- script --}}
 <script>
 function submitForm(id) {
     const form = document.getElementById(`form-edit-${id}`);
