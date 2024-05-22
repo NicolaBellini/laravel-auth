@@ -4,6 +4,16 @@
 
 <h1>index projects</h1>
 
+@if($errors->any())
+<div class="alert alert-danger" role="alert">
+    @foreach ($errors->all() as $error)
+        <li>
+            {{$error}}
+        </li>
+    @endforeach
+</div>
+@endif
+
 <table class="table">
     <thead>
         <tr>
@@ -17,19 +27,22 @@
     <tbody>
     @foreach ($projectsList as $project)
         <tr>
-            <td class="w-25">
-                <input type="text" value="{{$project->name}}">
-            </td>
-             <td class="w-25">
-                <input type="text" value="{{$project->topic}}">
-            </td>
-              <td class="w-25">
-                <input type="text" value="{{$project->difficulty}}">
-            </td>
+            <form action="{{route('admin.projects.update', $project)}}" id="form-edit-{{$project->id}}" method="post">
+                @csrf
+                @method('PUT')
+
+                <td class="w-25">
+                    <input type="text" value="{{$project->name}}" name="name">
+                </td>
+                 <td class="w-25">
+                    <input type="text" value="{{$project->topic}}" name="topic">
+                </td>
+                  <td class="w-25">
+                    <input type="text" value="{{$project->difficulty}}" name="difficulty">
+                </td>
+            </form>
             <td class="d-flex">
-                <form action="">
-                    <button>modifica</button>
-                </form>
+                <button onclick="submitForm({{$project->id}})">modifica</button>
                 <form action="">
                     <button>elimina</button>
                 </form>
@@ -41,6 +54,15 @@
 
   </tbody>
 </table>
+
+<script>
+function submitForm(id) {
+    const form = document.getElementById(`form-edit-${id}`);
+    form.submit();
+    // console.log(form);
+}
+
+</script>
 
 
 @endsection
