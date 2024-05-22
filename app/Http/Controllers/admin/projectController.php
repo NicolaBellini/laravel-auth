@@ -74,13 +74,20 @@ class projectController extends Controller
     public function update(Request $request, Project $project)
     {
 
-        $validData = $request->validate([
-         'name'=>'required|min:2|max:30'
-
-        ],[
-         'name.required'=>'il nome deve essere inserito',
-         'name.min'=>'il nome deve avere almeno min: caratteri',
-         'name.max'=>'il nome deve avere massimo max: caratteri'
+       $validData = $request->validate([
+        'name' => 'required|min:2|max:30',
+        'topic' => 'required|min:2|max:50',
+        'difficulty' => 'required|min:1|max:10'
+        ], [
+            'name.required' => 'Il nome deve essere inserito',
+            'name.min' => 'Il nome deve avere almeno :min caratteri',
+            'name.max' => 'Il nome deve avere massimo :max caratteri',
+            'topic.required' => 'Il topic deve essere inserito',
+            'topic.min' => 'Il topic deve avere almeno :min caratteri',
+            'topic.max' => 'Il topic deve avere massimo :max caratteri',
+            'difficulty.required' => 'La difficoltà deve essere inserita',
+            'difficulty.min' => 'La difficoltà deve avere almeno :min caratteri',
+            'difficulty.max' => 'La difficoltà deve avere massimo :max caratteri'
         ]);
 
 
@@ -88,7 +95,6 @@ class projectController extends Controller
         if ($exist) {
             return redirect()->route('admin.projects.index')->with('error', 'Esiste già un progetto con questo nome');
         }
-
 
         $validData['slug'] = Helper::generateSlug($validData['name'], Project::class);
         $project->update($validData);
