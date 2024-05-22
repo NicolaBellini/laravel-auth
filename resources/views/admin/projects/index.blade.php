@@ -14,7 +14,38 @@
 </div>
 @endif
 
-<table class="table">
+@if(session('error'))
+<div class="alert alert-danger" role="alert">
+ {{session('error')}}
+</div>
+
+@endif
+
+@if(session('success'))
+ <div class="alert alert-success" role="alert">
+    {{session('success')}}
+</div>
+
+@endif
+
+<div class="container-fluid d-flex ">
+<form action="{{route('admin.projects.store')}}" method="post">
+    @csrf
+    <label for="Name">Nome progetto</label>
+    <input type="text" id="name" name="name" class="me-3">
+
+    <label for="topic">Argomento progetto</label>
+    <input type="text" id="topic"  name="topic"  class="me-3">
+
+    <label for="difficulty">Difficoltà progetto</label>
+    <input type="text" id="difficulty" name="difficulty"  class="me-3">
+
+    <button type="submit">crea</button>
+
+</form>
+</div>
+
+<table class="table edit-table">
     <thead>
         <tr>
             <th scope="col">titolo</th>
@@ -43,8 +74,10 @@
             </form>
             <td class="d-flex">
                 <button onclick="submitForm({{$project->id}})">modifica</button>
-                <form action="">
-                    <button>elimina</button>
+                <form action="{{route('admin.projects.destroy', $project)}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button onclick="submitForm({{$project->id}})">elimina</button>
                 </form>
 
             </td>

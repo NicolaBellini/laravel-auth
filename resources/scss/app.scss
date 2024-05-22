@@ -10,9 +10,11 @@ main {
     height: calc(100vh - 70px);
 }
 
-input {
-    border: none;
-    &:focus-visible {
-        outline: none !important;
+.edit-table {
+    input {
+        border: none;
+        &:focus-visible {
+            outline: none !important;
+        }
     }
 }

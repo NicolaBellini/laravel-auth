@@ -6,6 +6,7 @@ use App\functions\Helper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use Illuminate\Validation\Rules\Exists;
 
 class projectController extends Controller
 {
@@ -31,7 +32,24 @@ class projectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exist= Project::where('name', $request->name)->first();
+        if($exist){
+            return redirect()->route('admin.projects.index')->with('error','esiste gia un progetto con lo stesso nome');
+        }else{
+            $formData = $request->all();
+            $newProject= new Project();
+            $newProject->name = $formData['name'];
+            $newProject->topic = $formData['topic'];
+            $newProject->difficulty = $formData['difficulty'];
+            $newProject->slug = Helper::generateSlug($newProject->name, Project::class);
+            // dd($newProject);
+            $newProject->save();
+
+            return redirect()->route('admin.projects.index')->with('success','progetto aggiunto con successo');
+        }
+
+
+
     }
 
     /**
@@ -85,6 +103,6 @@ class projectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
     }
 }
