@@ -46,7 +46,7 @@
     <label for="difficulty">Difficoltà progetto</label>
     <input type="text" id="difficulty" name="difficulty"  class="me-3">
 
-    <button type="submit">crea</button>
+    <button class="btn btn-succes" type="submit">crea</button>
 
 </form>
 </div>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\guest\pageController;
 use App\Http\Controllers\admin\adminController;
 use App\Http\Controllers\admin\projectController;
+use App\Http\Controllers\admin\technologyController;
 use Database\Seeders\ProjectsSeeder;
 
 /*
@@ -25,6 +26,9 @@ Route::middleware(['auth', 'verified'])
     ->prefix('admin')->name('admin.')->group(function(){
     Route::get('/', [adminController::class, 'index'])->name('home');
     Route::resource('projects', projectController::class)->except([
+        'create','show','edit'
+    ]);
+    Route::resource('technology', technologyController::class)->except([
         'create','show','edit'
     ]);
 });

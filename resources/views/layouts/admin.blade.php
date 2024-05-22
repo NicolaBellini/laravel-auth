@@ -19,7 +19,7 @@
            <ul>
             <li><a href="{{route('admin.projects.index')}}">i miei progetti</a></li>
 
-            <li><a href="">modifica tipi e tecnologie</a></li>
+            <li><a href="{{route('admin.technology.index')}}">modifica tipi e tecnologie</a></li>
 
            </ul>
         </div>
