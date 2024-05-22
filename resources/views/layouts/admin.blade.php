@@ -16,11 +16,16 @@
     <main class="d-flex">
 
         <div class="aside">
-            <h1>aside</h1>
+           <ul>
+            <li><a href="{{route('admin.projects.index')}}">i miei progetti</a></li>
+
+            <li><a href="">modifica tipi e tecnologie</a></li>
+
+           </ul>
         </div>
 
 
-        <div>
+        <div class="p-4 w-100 ">
             @yield('content')
         </div>
     </main>

@@ -17,16 +17,14 @@
           <p class="mt-2">{{Auth::user()->name}}</p>
         </li>
         <li>
-            <form action="{{route('logout')}}" method="POST">
+            <form action="{{route('logout')}}" class="ms-2" method="POST">
                 @csrf
                 @method('POST')
                 {{-- @method('DELETE') --}}
                 <button type="submit" class="btn btn-warning ">esci</button>
             </form>
         </li>
-        <li>
-            <a href="{{route('admin.projects.index')}}">Progetti</a>
-        </li>
+
       </ul>
     </div>
   </div>
