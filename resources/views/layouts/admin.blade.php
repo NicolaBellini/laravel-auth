@@ -9,7 +9,9 @@
 </head>
 <body>
 
-    @include('admin.partials.header')
+    <header>
+        @include('admin.partials.header')
+    </header>
 
     <main class="d-flex">
 
