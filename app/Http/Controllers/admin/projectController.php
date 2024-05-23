@@ -50,7 +50,7 @@ class projectController extends Controller
 
         }
 
-        dd($formData);
+        // dd($formData);
         $exist= Project::where('name', $request->name)->first();
         if($exist){
             return redirect()->route('admin.projects.index')->with('error','esiste gia un progetto con lo stesso nome');
@@ -75,9 +75,9 @@ class projectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
-        //
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
@@ -108,7 +108,7 @@ class projectController extends Controller
         $request['slug'] = Helper::generateSlug($request['name'], Project::class);
         $project->update($fomrData);
 
-        return redirect()->route('admin.projects.index')->with('success', 'Il progetto è stato aggiornato con successo');
+        return redirect()->route('admin.projects.show', $project)->with('success', 'Il progetto è stato aggiornato con successo');
     }
         // dump($project);
 

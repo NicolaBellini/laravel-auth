@@ -22,6 +22,8 @@
         <td>{{$project->difficulty}}</td>
         <td class="d-flex">
             <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-warning ">modifica</a>
+            <a href="{{route('admin.projects.show', $project)}}" class="btn btn-primary ">vedi</a>
+
 
 
             <form action="{{route('admin.projects.destroy', $project)}}" method="post">
