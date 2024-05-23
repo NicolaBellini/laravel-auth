@@ -45,7 +45,7 @@
       <label for="image" class="form-label">immagine</label>
       <input type="file" class="form-control" id="image" placeholder="Another input placeholder" name="image" onchange="showimage(event)">
     </div>
-    <img src="" id="thumb" alt="">
+    <img class="thumb w-25 " id="thumb" alt="">
 
 
 
@@ -64,7 +64,8 @@
 function showimage(event){
 
     const thumb = document.getElementById('thumb');
-    thumb.src = URL.createObjectURL(event.target.file[0]);
+    thumb.src = URL.createObjectURL(event.target.files[0]);
+    // console.log(thumb.src);
 }
 
 </script>
