@@ -20,11 +20,16 @@
         <th scope="row">{{$project->name}}</th>
         <td>{{$project->topic}}</td>
         <td>{{$project->difficulty}}</td>
-        <td>
+        <td class="d-flex">
             <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-warning ">modifica</a>
 
-            <a href="{{route('admin.projects.destroy', $project)}}" class="btn btn-danger ">elimina</a>
 
+            <form action="{{route('admin.projects.destroy', $project)}}" method="post">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger ">elimina</button>
+
+            </form>
         </td>
 
 
