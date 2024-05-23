@@ -47,9 +47,14 @@
     <img src="" id="thumb" alt=""> --}}
 
 
-    <button type="submit" class="btn btn-success ">invia</button>
+
+    <div class="d-flex justify-content-end w100">
+
+        <button type="submit" class="btn btn-success ">invia</button>
+    </div>
 
     </form>
+
 </div>
 
 @endsection

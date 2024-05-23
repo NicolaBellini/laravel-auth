@@ -47,10 +47,21 @@
     </div>
     <img src="" id="thumb" alt=""> --}}
 
+    <div class="d-flex justify-content-end w-100 ">
 
-    <button type="submit" class="btn btn-warning ">modifica</button>
+        <button type="submit" class="btn btn-warning me-3">modifica</button>
+        <form class="mt-3" action="{{route('admin.projects.destroy', $project)}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger ">elimina</button>
+
+        </form>
+
+    </div>
+
 
     </form>
+
 </div>
 
 @endsection
