@@ -85,31 +85,16 @@ class projectController extends Controller
      */
     public function update(projectRequest $request, Project $project)
     {
-
-    //    $validData = $request->validate([
-    //     'name' => 'required|min:2|max:30',
-    //     'topic' => 'required|min:2|max:50',
-    //     'difficulty' => 'required|min:1|max:10'
-    //     ], [
-    //         'name.required' => 'Il nome deve essere inserito',
-    //         'name.min' => 'Il nome deve avere almeno :min caratteri',
-    //         'name.max' => 'Il nome deve avere massimo :max caratteri',
-    //         'topic.required' => 'Il topic deve essere inserito',
-    //         'topic.min' => 'Il topic deve avere almeno :min caratteri',
-    //         'topic.max' => 'Il topic deve avere massimo :max caratteri',
-    //         'difficulty.required' => 'La difficoltà deve essere inserita',
-    //         'difficulty.min' => 'La difficoltà deve avere almeno :min caratteri',
-    //         'difficulty.max' => 'La difficoltà deve avere massimo :max caratteri'
-    //     ]);
-
+        $fomrData = $request->all();
+        // dd($fomrData);
 
         $exist = Project::where('name', $request->name)->first();
         if ($exist) {
-            return redirect()->route('admin.projects.index')->with('error', 'Esiste già un progetto con questo nome');
+            return redirect()->route('admin.projects.edit',$project)->with('error', 'Esiste già un progetto con questo nome');
         }
 
         $request['slug'] = Helper::generateSlug($request['name'], Project::class);
-        $project->update($request->all());
+        $project->update($fomrData);
 
         return redirect()->route('admin.projects.index')->with('success', 'Il progetto è stato aggiornato con successo');
     }

@@ -23,15 +23,15 @@
     @csrf
     <div class="mb-3">
       <label for="formGroupExampleInput" class="form-label">nome Progetto</label>
-      <input type="text" class="form-control @error('name') is-invalid @enderror" id="formGroupExampleInput"  name="name" value="{{old('name')}}">
+      <input type="text" class="form-control @error('name') is-invalid @enderror" id="formGroupExampleInput" placeholder="nome"  name="name" value="{{old('name')}}">
     </div>
     <div class="mb-3">
       <label for="formGroupExampleInput2" class="form-label">argomento progetto</label>
-      <input type="text" class="form-control @error('topic') is-invalid @enderror" id="formGroupExampleInput2" placeholder="Another input placeholder" name="topic" value="{{old('topic')}}">
+      <input type="text" class="form-control @error('topic') is-invalid @enderror" id="formGroupExampleInput2" placeholder="argomento" name="topic" value="{{old('topic')}}">
     </div>
     <div class="mb-3">
       <label for="formGroupExampleInput3" class="form-label">difficoltà progetto</label>
-      <input type="text" class="form-control @error('difficulty') is-invalid @enderror" id="formGroupExampleInput3" placeholder="Another input placeholder" name="difficulty" value="{{old('difficulty')}}">
+      <input type="text" class="form-control @error('difficulty') is-invalid @enderror" id="formGroupExampleInput3" placeholder="difficoltà" name="difficulty" value="{{old('difficulty')}}">
     </div>
     {{-- <div class="mb-3">
       <label for="formGroupExampleInput3" class="form-label">difficoltà progetto</label>
