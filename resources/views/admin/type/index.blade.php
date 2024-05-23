@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>index technology</h1>
+<h1>index type</h1>
 
 @if($errors->any())
 <div class="alert alert-danger" role="alert">

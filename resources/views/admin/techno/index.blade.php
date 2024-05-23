@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>index technology</h1>
+<h1>index technologies</h1>
 
 @if($errors->any())
 <div class="alert alert-danger" role="alert">
@@ -37,7 +37,7 @@
 <div class="container-fluid d-flex ">
 <form action="{{route('admin.technology.store')}}" method="post">
     @csrf
-    <label for="Name">Nome Tecnologia</label>
+    <label for="Name">Nome tecnologia</label>
     <input type="text" id="name" name="name" class="me-3">
 
     <button class="btn btn-succes" type="submit">crea</button>
@@ -69,12 +69,11 @@
             <td class="d-flex">
             <button onclick="submitForm({{$techno->id}})">modifica</button>
 
-             <form action="{{route('admin.technology.destroy', $techno)}}" method="post" id="form-edit-{{$techno->id}}">
+            <form action="{{route('admin.technology.destroy', $techno)}}" method="post">
                 @csrf
                 @method('DELETE')
-                <button onclick="submitForm({{$techno->id}})" class="btn btn-danger">Elimina</button>
+                <button type="submit" class="btn btn-danger">Elimina</button>
             </form>
-
 
             </td>
 

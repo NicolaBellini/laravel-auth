@@ -31,10 +31,7 @@ class technologyController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
-            $exist= Technology::where('name', $request->name)->first();
+        $exist= Technology::where('name', $request->name)->first();
         if($exist){
             return redirect()->route('admin.technology.index')->with('error','esiste gia una tecnologia con lo stesso nome');
         }else{

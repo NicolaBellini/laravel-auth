@@ -35,7 +35,7 @@ class typeController extends Controller
     {
         $exist= Type::where('name', $request->name)->first();
         if($exist){
-            return redirect()->route('')->with('error','esiste gia una tecnologia con lo stesso nome');
+            return redirect()->route('admin.type.index')->with('error','esiste gia una tecnologia con lo stesso nome');
         }else{
             $formData = $request->all();
             $newType= new type();

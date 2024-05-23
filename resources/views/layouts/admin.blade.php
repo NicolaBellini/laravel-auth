@@ -19,9 +19,9 @@
            <ul>
             <li><a href="{{route('admin.projects.index')}}">i miei progetti</a></li>
 
-            <li><a href="{{route('admin.technology.index')}}">modifica tipi e tecnologie</a></li>
+            <li><a href="{{route('admin.technology.index')}}">modifica le tecnologie</a></li>
 
-             <li><a href="{{route('admin.type.index')}}">modifica tipi e tecnologie</a></li>
+             <li><a href="{{route('admin.type.index')}}">modifica i tipi</a></li>
 
            </ul>
         </div>
