@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('topic',200);
             $table->tinyInteger('difficulty');
             $table->string('image')->nullable();
+            $table->string('image_original_name')->nullable();
             $table->string('slug')->unique();
             $table->timestamps();
         });

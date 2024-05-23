@@ -13,6 +13,8 @@ class Project extends Model
         'name',
         'topic',
         'difficulty',
+        'image',
+        'image_original_name',
         'slug'
     ];
 }

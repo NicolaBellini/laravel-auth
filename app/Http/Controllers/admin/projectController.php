@@ -42,12 +42,15 @@ class projectController extends Controller
 
         // verifico se l'immagine esiste
         if(array_key_exists('image', $formData)){
-            // salvo l' immagine nello storage nella cartella upload
+            // salvo l' immagine nello storage nella cartella upload e ottengo il percorso
             $imagePath = Storage::put('uploads', $formData['image']);
+            $originalName = $request->file('image')->getClientOriginalName();
+            $formData['image_original_name'] = $originalName;
+            $formData['image']= $imagePath;
 
         }
 
-        dd($imagePath);
+        dd($formData);
         $exist= Project::where('name', $request->name)->first();
         if($exist){
             return redirect()->route('admin.projects.index')->with('error','esiste gia un progetto con lo stesso nome');
