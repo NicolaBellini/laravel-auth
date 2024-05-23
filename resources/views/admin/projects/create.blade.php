@@ -45,13 +45,13 @@
       <label for="image" class="form-label">immagine</label>
       <input type="file" class="form-control" id="image" placeholder="Another input placeholder" name="image" onchange="showimage(event)">
     </div>
-    <img class="thumb w-25 " id="thumb" alt="">
+    <img class="thumb w-25" style="height: 350px" id="thumb" alt="" src="/img/placeholder.avif">
 
 
 
     <div class="d-flex justify-content-end w100">
 
-        <button type="submit" class="btn btn-success ">invia</button>
+        <button type="submit" class="btn btn-success "  >invia</button>
     </div>
 
     </form>
