@@ -22,4 +22,8 @@ class Helper{
         return $slug;
 
     }
+    public static function getDate($date){
+        $date = date_create($date);
+        return date_format($date, 'd/m/Y');
+    }
 }

@@ -54,10 +54,10 @@
     </thead>
     <tbody>
     @foreach ($technoList as $techno)
-        <tr>
-            <form action="{{route('admin.technology.update', $techno)}}" id="form-edit-{{$techno->id}}" method="post">
-                @csrf
-                @method('PUT')
+    <tr>
+        <form action="{{route('admin.technology.update', $techno)}}" id="form-edit-{{$techno->id}}" method="post">
+            @csrf
+            @method('PUT')
 
                 <td class="w-25">
                     <input type="text" value="{{$techno->name}}" name="name">
@@ -88,8 +88,9 @@
 <script>
 function submitForm(id) {
     const form = document.getElementById(`form-edit-${id}`);
-    form.submit();
     // console.log(form);
+
+    form.submit();
 }
 
 </script>

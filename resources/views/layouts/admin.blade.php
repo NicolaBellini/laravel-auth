@@ -27,7 +27,7 @@
         </div>
 
 
-        <div class="p-4 w-100 ">
+        <div class="p-4 w-100 my_dashboard ">
             @yield('content')
         </div>
     </main>

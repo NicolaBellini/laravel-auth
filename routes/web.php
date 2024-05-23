@@ -26,9 +26,7 @@ Route::get('/',[pageController::class, 'index'])->name('home');
 Route::middleware(['auth', 'verified'])
     ->prefix('admin')->name('admin.')->group(function(){
     Route::get('/', [adminController::class, 'index'])->name('home');
-    Route::resource('projects', projectController::class)->except([
-        'create','show','edit'
-    ]);
+    Route::resource('projects', projectController::class);
     Route::resource('technology', technologyController::class)->except([
         'create','show','edit'
     ]);

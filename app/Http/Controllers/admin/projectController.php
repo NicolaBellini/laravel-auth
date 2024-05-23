@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use Illuminate\Validation\Rules\Exists;
+use App\Http\Requests\projectRequest;
 
 class projectController extends Controller
 {
@@ -24,24 +25,31 @@ class projectController extends Controller
      */
     public function create()
     {
-        //
+        $method='post';
+        $route= "route('admin.projects.store')";
+
+        return view('admin.projects.create', compact('method', 'route'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(projectRequest $request)
     {
+
+        // dd($request->all());
         $exist= Project::where('name', $request->name)->first();
         if($exist){
             return redirect()->route('admin.projects.index')->with('error','esiste gia un progetto con lo stesso nome');
         }else{
             $formData = $request->all();
+            $formData['slug'] = Helper::generateSlug($formData['name'], Project::class);
+
             $newProject= new Project();
-            $newProject->name = $formData['name'];
-            $newProject->topic = $formData['topic'];
-            $newProject->difficulty = $formData['difficulty'];
-            $newProject->slug = Helper::generateSlug($newProject->name, Project::class);
+            $newProject->fill($formData);
+            // $newProject->name = $formData['name'];
+            // $newProject->topic = $formData['topic'];
+            // $newProject->difficulty = $formData['difficulty'];
             // dd($newProject);
             $newProject->save();
 
@@ -63,15 +71,20 @@ class projectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
-        //
+        $method='PUT';
+        $route= "route('admin.projects.update',$project)";
+
+
+        // return view('admin.projects.edit-create', compact('method','route','project'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Project $project)
+    public function update(projectRequest $request, Project $project)
     {
 
        $validData = $request->validate([

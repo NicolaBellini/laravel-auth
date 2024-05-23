@@ -65,9 +65,10 @@ class technologyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-      public function update(Request $request, Technology $techno)
+      public function update(Request $request, Technology $technology)
     {
 
+        // dd($technology);
        $validData = $request->validate([
         'name' => 'required|min:2|max:30',
         ], [
@@ -82,9 +83,9 @@ class technologyController extends Controller
             return redirect()->route('admin.technology.index')->with('error', 'Esiste già una tecnologia con questo nome');
         }
 
-        $techno->name= $validData['name'];
-        $techno->slug = Helper::generateSlug($validData['name'], Technology::class);
-        $techno->save();
+        $technology->name= $validData['name'];
+        $technology->slug = Helper::generateSlug($validData['name'], Technology::class);
+        $technology->save();
 
         return redirect()->route('admin.technology.index')->with('success', 'La tecnologia è stata aggiornata con successo');
     }
@@ -92,9 +93,9 @@ class technologyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Technology $techno)
+    public function destroy(Technology $technology)
     {
-        $techno->delete();
-        return redirect()->route('admin.technology.index')->with('deleted',"la tecnologia $techno->name è stata eliminata con successo");
+        $technology->delete();
+        return redirect()->route('admin.technology.index')->with('deleted',"la tecnologia $technology->name è stata eliminata con successo");
     }
 }
