@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use Illuminate\Validation\Rules\Exists;
 use App\Http\Requests\projectRequest;
-
+use Illuminate\Support\Facades\Storage;
 class projectController extends Controller
 {
     /**
@@ -38,11 +38,20 @@ class projectController extends Controller
     {
 
         // dd($request->all());
+        $formData = $request->all();
+
+        // verifico se l'immagine esiste
+        if(array_key_exists('image', $formData)){
+            // salvo l' immagine nello storage nella cartella upload
+            $imagePath = Storage::put('uploads', $formData['image']);
+
+        }
+
+        dd($imagePath);
         $exist= Project::where('name', $request->name)->first();
         if($exist){
             return redirect()->route('admin.projects.index')->with('error','esiste gia un progetto con lo stesso nome');
         }else{
-            $formData = $request->all();
             $formData['slug'] = Helper::generateSlug($formData['name'], Project::class);
 
             $newProject= new Project();

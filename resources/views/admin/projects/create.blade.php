@@ -26,7 +26,7 @@
 @endif
 
 <div>
-    <form action="{{route('admin.projects.store')}}" method="post" >
+    <form action="{{route('admin.projects.store')}}" method="post" enctype="multipart/form-data" >
     @csrf
     <div class="mb-3">
       <label for="formGroupExampleInput" class="form-label">nome Progetto</label>
@@ -40,11 +40,12 @@
       <label for="formGroupExampleInput3" class="form-label">difficoltà progetto</label>
       <input type="text" class="form-control @error('difficulty') is-invalid @enderror" id="formGroupExampleInput3" placeholder="difficoltà" name="difficulty" value="{{old('difficulty')}}">
     </div>
-    {{-- <div class="mb-3">
-      <label for="formGroupExampleInput3" class="form-label">difficoltà progetto</label>
-      <input type="file" class="form-control" id="formGroupExampleInput3" placeholder="Another input placeholder" name="image" onchange="showimage(event)">
+    {{-- input img --}}
+    <div class="mb-3">
+      <label for="image" class="form-label">immagine</label>
+      <input type="file" class="form-control" id="image" placeholder="Another input placeholder" name="image" onchange="showimage(event)">
     </div>
-    <img src="" id="thumb" alt=""> --}}
+    <img src="" id="thumb" alt="">
 
 
 
@@ -59,11 +60,11 @@
 
 @endsection
 
-{{-- <script>
+<script>
 function showimage(event){
 
     const thumb = document.getElementById('thumb');
     thumb.src = URL.createObjectURL(event.target.file[0]);
 }
 
-</script> --}}
+</script>
