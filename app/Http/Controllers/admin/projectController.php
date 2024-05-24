@@ -37,7 +37,7 @@ class projectController extends Controller
     public function store(projectRequest $request)
     {
 
-        // dd($request->all());
+        dd($request->all());
         $formData = $request->all();
 
         // verifico se l'immagine esiste
@@ -50,7 +50,7 @@ class projectController extends Controller
 
         }
 
-        // dd($formData);
+        dd($formData);
         $exist= Project::where('name', $request->name)->first();
         if($exist){
             return redirect()->route('admin.projects.index')->with('error','esiste gia un progetto con lo stesso nome');
@@ -97,18 +97,31 @@ class projectController extends Controller
      */
     public function update(projectRequest $request, Project $project)
     {
-        $fomrData = $request->all();
-        // dd($fomrData);
+        $formData = $request->all();
+        // dd($request->all());
+        if(array_key_exists('image', $formData)){
+            // salvo l' immagine nello storage nella cartella upload e ottengo il percorso
+            $imagePath = Storage::put('uploads', $formData['image']);
+            $originalName = $request->file('image')->getClientOriginalName();
+            $formData['image_original_name'] = $originalName;
+            $formData['image']= $imagePath;
 
-        $exist = Project::where('name', $request->name)->first();
-        if ($exist) {
-            return redirect()->route('admin.projects.edit',$project)->with('error', 'Esiste già un progetto con questo nome');
         }
 
-        $request['slug'] = Helper::generateSlug($request['name'], Project::class);
-        $project->update($fomrData);
+        if ($formData['name']!==$project->name) {
+            $formData['slug'] = Helper::generateSlug($formData['name'], Project::class);
+        }else{
+            $formData['slug']= $project['slug'];
+        }
 
-        return redirect()->route('admin.projects.show', $project)->with('success', 'Il progetto è stato aggiornato con successo');
+        // return redirect()->route('admin.projects.edit',$project)->with('error', 'Esiste già un progetto con questo nome');
+
+        // dd($formData);
+        // $exist = Project::where('name', $request->name)->first();
+
+        $project->update($formData);
+        // dd($project);
+        return redirect()->route('admin.projects.show', $project);
     }
         // dump($project);
 

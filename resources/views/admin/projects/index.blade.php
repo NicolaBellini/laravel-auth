@@ -20,6 +20,7 @@
         <th scope="row">{{$project->name}}</th>
         <td>{{$project->topic}}</td>
         <td>{{$project->difficulty}}</td>
+        <td><img src="{{asset('storage/'. $project->image)}}" style="height: 100px" onerror="this.src='/img/placeholder.avif'" alt=""></td>
         <td class="d-flex">
             <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-warning ">modifica</a>
             <a href="{{route('admin.projects.show', $project)}}" class="btn btn-primary ">vedi</a>
